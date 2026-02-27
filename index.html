@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Controle Roku</title>
+
+<style>
+body {
+    background-color: #111;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+}
+
+.titulo {
+    color: #6f2dbd;
+    font-size: 32px;
+}
+
+.container {
+    margin-top: 40px;
+}
+
+input {
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+/* BOTÕES PADRÃO */
+button {
+    background-color: #1c1c1c;
+    color: #ffffff;
+    border: 2px solid #000000;
+    width: 110px;
+    height: 60px;
+    font-size: 18px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background-color: #2a2a2a;
+}
+
+/* ÁREA DIRECIONAL */
+.direcional {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.linha-meio {
+    display: flex;
+    gap: 10px;
+}
+
+/* DIRECIONAIS ROXOS */
+.direcional button {
+    background-color: #6f2dbd;
+    border: 2px solid #4b0082;
+    width: 120px;
+    height: 65px;
+}
+
+/* BOTÃO OK REDONDO */
+.ok {
+    background-color: #6f2dbd;
+    border: 2px solid #4b0082;
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.direcional button:hover,
+.ok:hover {
+    background-color: #5a23a0;
+}
+</style>
+
+</head>
+<body>
+
+<h1 class="titulo">Controle Roku</h1>
+
+<div class="container">
+
+<input type="text" id="ip" placeholder="Digite o IP do Roku">
+
+<br><br>
+
+<div>
+    <button onclick="enviar('Home')">Início</button>
+    <button onclick="enviar('Back')">Voltar</button>
+</div>
+
+<br>
+
+<div class="direcional">
+
+    <button onclick="enviar('Up')">↑</button>
+
+    <div class="linha-meio">
+        <button onclick="enviar('Left')">←</button>
+        <button class="ok" onclick="enviar('Select')">OK</button>
+        <button onclick="enviar('Right')">→</button>
+    </div>
+
+    <button onclick="enviar('Down')">↓</button>
+
+</div>
+
+<br><br>
+
+<div>
+    <button onclick="enviar('VolumeUp')">Volume +</button>
+    <button onclick="enviar('VolumeDown')">Volume -</button>
+    <button onclick="enviar('VolumeMute')">Mudo</button>
+</div>
+
+</div>
+
+<script>
+function enviar(comando) {
+    const ip = document.getElementById("ip").value.trim();
+
+    if (!ip) {
+        alert("Digite o IP do Roku");
+        return;
+    }
+
+    fetch(`http://${ip}:8060/keypress/${comando}`, {
+        method: "POST"
+    })
+    .then(() => console.log("Comando enviado"))
+    .catch(err => console.error("Erro:", err));
+}
+</script>
+
+</body>
+</html>
