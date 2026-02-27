@@ -2,76 +2,89 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Controle Roku</title>
 
 <style>
+
 body {
     background-color: #111;
     color: white;
     text-align: center;
-    font-family: Arial;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 10px;
 }
 
+/* Título */
 .titulo {
     color: #6f2dbd;
     font-size: 32px;
 }
 
+/* Container principal */
 .container {
-    margin-top: 40px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
+/* Input */
 input {
-    padding: 8px;
-    border-radius: 5px;
+    padding: 10px;
+    border-radius: 8px;
     border: none;
+    width: 90%;
+    max-width: 320px;
+    font-size: 16px;
     margin-bottom: 20px;
 }
 
-/* BOTÕES PADRÃO */
+/* Botões padrão */
 button {
     background-color: #1c1c1c;
     color: #ffffff;
     border: 2px solid #000000;
-    width: 110px;
-    height: 60px;
-    font-size: 18px;
+    width: 90px;
+    height: 55px;
+    font-size: 16px;
     border-radius: 12px;
     cursor: pointer;
     transition: 0.2s;
+    margin: 4px;
 }
 
 button:hover {
     background-color: #2a2a2a;
 }
 
-/* ÁREA DIRECIONAL */
+/* Direcional */
 .direcional {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
 }
 
+/* Linha do meio */
 .linha-meio {
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
-/* DIRECIONAIS ROXOS */
+/* Botões roxos */
 .direcional button {
     background-color: #6f2dbd;
     border: 2px solid #4b0082;
-    width: 120px;
-    height: 65px;
+    width: 110px;
+    height: 60px;
 }
 
-/* BOTÃO OK REDONDO */
+/* OK redondo */
 .ok {
-    background-color: #6f2dbd;
-    border: 2px solid #4b0082;
-    width: 90px;
-    height: 90px;
+    width: 85px !important;
+    height: 85px !important;
     border-radius: 50%;
     font-weight: bold;
     display: flex;
@@ -83,9 +96,25 @@ button:hover {
 .ok:hover {
     background-color: #5a23a0;
 }
-</style>
 
+/* 📱 Mobile pequeno */
+@media (max-width: 480px) {
+
+    button {
+        width: 75px;
+        height: 50px;
+        font-size: 14px;
+    }
+
+    .titulo {
+        font-size: 26px;
+    }
+
+}
+
+</style>
 </head>
+
 <body>
 
 <h1 class="titulo">Controle Roku</h1>
@@ -93,8 +122,6 @@ button:hover {
 <div class="container">
 
 <input type="text" id="ip" placeholder="Digite o IP do Roku">
-
-<br><br>
 
 <div>
     <button onclick="enviar('Home')">Início</button>
@@ -117,7 +144,7 @@ button:hover {
 
 </div>
 
-<br><br>
+<br>
 
 <div>
     <button onclick="enviar('VolumeUp')">Volume +</button>
@@ -139,7 +166,6 @@ function enviar(comando) {
     fetch(`http://${ip}:8060/keypress/${comando}`, {
         method: "POST"
     })
-    .then(() => console.log("Comando enviado"))
     .catch(err => console.error("Erro:", err));
 }
 </script>
