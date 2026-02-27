@@ -3,113 +3,79 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Controle Roku</title>
+<title>Controle Roku GOD MODE</title>
 
 <style>
 
-body {
-    background-color: #111;
-    color: white;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 10px;
+body{
+    background:#111;
+    color:white;
+    text-align:center;
+    font-family:Arial;
+    padding:10px;
 }
 
-/* Título */
-.titulo {
-    color: #6f2dbd;
-    font-size: 32px;
+.container{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
 }
 
-/* Container principal */
-.container {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+input{
+    padding:10px;
+    border-radius:8px;
+    border:none;
+    width:90%;
+    max-width:320px;
+    font-size:16px;
+    margin-bottom:15px;
 }
 
-/* Input */
-input {
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    width: 90%;
-    max-width: 320px;
-    font-size: 16px;
-    margin-bottom: 20px;
+button{
+    background:#1c1c1c;
+    color:white;
+    border:2px solid black;
+    width:90px;
+    height:55px;
+    font-size:15px;
+    border-radius:12px;
+    cursor:pointer;
+    margin:4px;
 }
 
-/* Botões padrão */
-button {
-    background-color: #1c1c1c;
-    color: #ffffff;
-    border: 2px solid #000000;
-    width: 90px;
-    height: 55px;
-    font-size: 16px;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: 0.2s;
-    margin: 4px;
+button:hover{
+    background:#2a2a2a;
 }
 
-button:hover {
-    background-color: #2a2a2a;
+.direcional{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:8px;
 }
 
-/* Direcional */
-.direcional {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
+.linha-meio{
+    display:flex;
+    gap:8px;
 }
 
-/* Linha do meio */
-.linha-meio {
-    display: flex;
-    gap: 8px;
+.direcional button{
+    background:#6f2dbd;
+    border:2px solid #4b0082;
+    width:110px;
+    height:60px;
 }
 
-/* Botões roxos */
-.direcional button {
-    background-color: #6f2dbd;
-    border: 2px solid #4b0082;
-    width: 110px;
-    height: 60px;
+.ok{
+    width:85px !important;
+    height:85px !important;
+    border-radius:50%;
+    font-weight:bold;
 }
 
-/* OK redondo */
-.ok {
-    width: 85px !important;
-    height: 85px !important;
-    border-radius: 50%;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.direcional button:hover,
-.ok:hover {
-    background-color: #5a23a0;
-}
-
-/* 📱 Mobile pequeno */
-@media (max-width: 480px) {
-
-    button {
-        width: 75px;
-        height: 50px;
-        font-size: 14px;
-    }
-
-    .titulo {
-        font-size: 26px;
-    }
-
+.titulo{
+    color:#6f2dbd;
+    font-size:32px;
 }
 
 </style>
@@ -117,57 +83,127 @@ button:hover {
 
 <body>
 
-<h1 class="titulo">Controle Roku</h1>
+<h1 class="titulo">Controle Roku GOD MODE</h1>
 
 <div class="container">
 
-<input type="text" id="ip" placeholder="Digite o IP do Roku">
+<input type="text" id="ip" placeholder="IP do Roku">
+
+<br>
+
+<button onclick="scannerGodMode()">🚀 AUTO BUSCAR</button>
+
+<p id="status"></p>
+
+<br>
 
 <div>
-    <button onclick="enviar('Home')">Início</button>
-    <button onclick="enviar('Back')">Voltar</button>
+<button onclick="enviar('Home')">Início</button>
+<button onclick="enviar('Back')">Voltar</button>
 </div>
 
 <br>
 
 <div class="direcional">
 
-    <button onclick="enviar('Up')">↑</button>
+<button onclick="enviar('Up')">↑</button>
 
-    <div class="linha-meio">
-        <button onclick="enviar('Left')">←</button>
-        <button class="ok" onclick="enviar('Select')">OK</button>
-        <button onclick="enviar('Right')">→</button>
-    </div>
+<div class="linha-meio">
+<button onclick="enviar('Left')">←</button>
+<button class="ok" onclick="enviar('Select')">OK</button>
+<button onclick="enviar('Right')">→</button>
+</div>
 
-    <button onclick="enviar('Down')">↓</button>
+<button onclick="enviar('Down')">↓</button>
 
 </div>
 
 <br>
 
 <div>
-    <button onclick="enviar('VolumeUp')">Volume +</button>
-    <button onclick="enviar('VolumeDown')">Volume -</button>
-    <button onclick="enviar('VolumeMute')">Mudo</button>
+<button onclick="enviar('VolumeUp')">Volume +</button>
+<button onclick="enviar('VolumeDown')">Volume -</button>
+<button onclick="enviar('VolumeMute')">Mudo</button>
 </div>
 
 </div>
 
 <script>
-function enviar(comando) {
+
+/* enviar comando */
+function enviar(comando){
+
     const ip = document.getElementById("ip").value.trim();
 
-    if (!ip) {
-        alert("Digite o IP do Roku");
+    if(!ip){
+        alert("Busque ou digite o IP");
         return;
     }
 
-    fetch(`http://${ip}:8060/keypress/${comando}`, {
-        method: "POST"
-    })
-    .catch(err => console.error("Erro:", err));
+    fetch(`http://${ip}:8060/keypress/${comando}`,{
+        method:"POST"
+    }).catch(()=>{});
 }
+
+/* descobrir gateway da rede */
+function getRedeProvavel(){
+
+    const base = ["192.168.0.","192.168.1.","10.0.0."];
+
+    return base[Math.floor(Math.random()*base.length)];
+}
+
+/* scanner GOD MODE */
+async function scannerGodMode(){
+
+    const status = document.getElementById("status");
+
+    status.innerText = "🚀 Procurando dispositivo...";
+
+    const rede = getRedeProvavel();
+
+    let promessas = [];
+
+    for(let i=1;i<=254;i++){
+
+        const ip = rede+i;
+
+        promessas.push(
+            (async()=>{
+                try{
+
+                    const controller = new AbortController();
+                    setTimeout(()=>controller.abort(),400);
+
+                    await fetch(`http://${ip}:8060`,{
+                        mode:"no-cors",
+                        signal:controller.signal
+                    });
+
+                    return ip;
+
+                }catch{
+                    return null;
+                }
+            })()
+        );
+    }
+
+    const resultado = await Promise.all(promessas);
+
+    const encontrado = resultado.find(x=>x!==null);
+
+    if(encontrado){
+
+        document.getElementById("ip").value = encontrado;
+
+        status.innerText = "✅ Encontrado: "+encontrado;
+
+    }else{
+        status.innerText = "❌ Não encontrado";
+    }
+}
+
 </script>
 
 </body>
