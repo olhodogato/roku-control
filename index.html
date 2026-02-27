@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Controle Roku</title>
 
-<link rel="manifest" href="manifest.json">
-<meta name="theme-color" content="#6f2dbd">
-
 <style>
 
 body {
@@ -171,13 +168,7 @@ function enviar(comando) {
     })
     .catch(err => console.error("Erro:", err));
 }
-</script> 
-<script>
-    if("serviceWorker" in navigator){
-    navigator.serviceWorker.register("sw.js");
-}
 </script>
 
 </body>
 </html>
-
