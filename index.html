@@ -40,25 +40,35 @@ input {
     font-size: 16px;
     margin-bottom: 20px;
 }
-    .power-btn {
+    
+.power-btn {
     position: fixed;
     top: 15px;
     right: 15px;
 
-    width: 55px;
-    height: 55px;
+    width: 60px;
+    height: 60px;
 
     border-radius: 50%;
-    border: none;
-
+    border: 3px solid white;
     background-color: #b00020;
-    color: white;
-    font-size: 22px;
-    font-weight: bold;
 
     cursor: pointer;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    transition: 0.2s;
+}
+
+/* Desenha o traço vertical */
+.power-btn::before {
+    content: "";
+    position: absolute;
+    top: 14px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 4px;
+    height: 20px;
+    background: white;
+    border-radius: 2px;
+}
+    
 }
 
 .power-btn:hover {
@@ -146,7 +156,7 @@ button:hover {
 
 <body>
 
-<button class="power-btn" onclick="enviar('Power')">⏻</button>
+<button class="power-btn" onclick="enviar('Power')"></button>
 
 <h1 class="titulo">Controle Roku</h1>
 
@@ -204,6 +214,7 @@ function enviar(comando) {
 
 </body>
 </html>
+
 
 
 
