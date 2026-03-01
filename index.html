@@ -40,6 +40,35 @@ input {
     font-size: 16px;
     margin-bottom: 20px;
 }
+    .power-btn {
+    position: fixed;
+    top: 15px;
+    right: 15px;
+
+    width: 55px;
+    height: 55px;
+
+    border-radius: 50%;
+    border: none;
+
+    background-color: #b00020;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    transition: 0.2s;
+}
+
+.power-btn:hover {
+    background-color: #8a0018;
+    transform: scale(1.05);
+}
+
+.power-btn:active {
+    transform: scale(0.95);
+    }
 
 /* Botões padrão */
 button {
@@ -117,6 +146,8 @@ button:hover {
 
 <body>
 
+<button class="power-btn" onclick="enviar('Power')">⏻</button>
+
 <h1 class="titulo">Controle Roku</h1>
 
 <div class="container">
@@ -124,7 +155,6 @@ button:hover {
 <input type="text" id="ip" placeholder="Digite o IP do Roku">
 
 <div>
-    <button onclick="enviar('Power')">Desligar</button>
     <button onclick="enviar('Home')">Início</button>
     <button onclick="enviar('Back')">Voltar</button>
 </div>
@@ -174,5 +204,6 @@ function enviar(comando) {
 
 </body>
 </html>
+
 
 
