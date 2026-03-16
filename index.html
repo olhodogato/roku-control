@@ -155,4 +155,68 @@ height:7.5%;
 top:80.5%;
 left:7%;
 width:27%;
-height:7.5
+height:7.5%;
+}
+
+.mute{
+top:88%;
+left:7%;
+width:27%;
+height:7.5%;
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Controle Roku</h1>
+
+<input id="ip" placeholder="Digite o IP do Roku">
+
+<div class="controle">
+
+<img src="controle.png">
+
+<button class="btn power" onclick="enviar('Power')"></button>
+
+<button class="btn home" onclick="enviar('Home')"></button>
+<button class="btn back" onclick="enviar('Back')"></button>
+
+<button class="btn up" onclick="enviar('Up')"></button>
+<button class="btn down" onclick="enviar('Down')"></button>
+<button class="btn left" onclick="enviar('Left')"></button>
+<button class="btn right" onclick="enviar('Right')"></button>
+<button class="btn ok" onclick="enviar('Select')"></button>
+
+<button class="btn rev" onclick="enviar('Rev')"></button>
+<button class="btn play" onclick="enviar('Play')"></button>
+<button class="btn fwd" onclick="enviar('Fwd')"></button>
+
+<button class="btn volup" onclick="enviar('VolumeUp')"></button>
+<button class="btn voldown" onclick="enviar('VolumeDown')"></button>
+<button class="btn mute" onclick="enviar('VolumeMute')"></button>
+
+</div>
+
+<script>
+
+function enviar(comando){
+
+const ip = document.getElementById("ip").value.trim()
+
+if(!ip){
+alert("Digite o IP do Roku")
+return
+}
+
+fetch(`http://\( {ip}:8060/keypress/ \){comando}`,{
+method:"POST"
+})
+
+}
+
+</script>
+
+</body>
+</html>
