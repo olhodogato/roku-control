@@ -8,30 +8,29 @@
 <style>
 
 body{
-background:#111;
-color:white;
+background:#000;
 font-family:Arial;
 text-align:center;
+color:white;
 margin:0;
 padding:10px;
 }
 
-.titulo{
-color:#6f2dbd;
-font-size:32px;
+h1{
+color:#7b2be2;
 }
 
 input{
-padding:10px;
-border-radius:8px;
-border:none;
 width:90%;
 max-width:320px;
+padding:12px;
+border-radius:10px;
+border:none;
 font-size:16px;
 margin-bottom:20px;
 }
 
-/* controle */
+/* CONTROLE */
 
 .controle{
 position:relative;
@@ -44,117 +43,125 @@ width:100%;
 display:block;
 }
 
+/* BOTÕES INVISÍVEIS */
+
 .btn{
 position:absolute;
-opacity:0.6;
+opacity:0;
 cursor:pointer;
-background:#ff0000;
-border:2px solid white;
-transform: translateY(-5px);
-  }
-
-/* DIRECIONAL */
-
-.up{
-top:165px;
-left:50%;
-transform:translate(-50%,-5px);
-width:70px;
-height:60px;
 }
 
-.down{
-top:280px;
-left:50%;
-transform:translate(-50%,-5px);
-width:70px;
-height:60px;
-}
+/* POWER */
 
-.left{
-top:225px;
-left:60px;
+.power{
+top:20px;
+left:50%;
+transform:translateX(-50%);
 width:70px;
 height:70px;
-}
-
-.right{
-top:225px;
-right:60px;
-width:70px;
-height:70px;
-}
-
-.ok{
-top:225px;
-left:50%;
-transform:translate(-50%,-5px);
-width:90px;
-height:90px;
 border-radius:50%;
 }
 
-/* superiores */
+/* HOME E BACK */
 
 .home{
-top:85px;
-left:45px;
+top:100px;
+right:30px;
 width:90px;
 height:45px;
 }
 
 .back{
-top:85px;
-right:45px;
+top:100px;
+left:30px;
 width:90px;
 height:45px;
 }
 
-/* mídia */
+/* DIRECIONAL */
+
+.up{
+top:170px;
+left:110px;
+width:80px;
+height:60px;
+}
+
+.down{
+top:260px;
+left:110px;
+width:80px;
+height:60px;
+}
+
+.left{
+top:220px;
+left:40px;
+width:80px;
+height:60px;
+}
+
+.right{
+top:220px;
+right:40px;
+width:80px;
+height:60px;
+}
+
+.ok{
+top:210px;
+left:50%;
+transform:translateX(-50%);
+width:90px;
+height:90px;
+border-radius:50%;
+}
+
+/* MEDIA */
 
 .rev{
-top:390px;
-left:45px;
+top:350px;
+left:30px;
 width:80px;
-height:45px;
+height:50px;
 }
 
 .play{
-top:390px;
+top:350px;
 left:50%;
-transform:translate(-50%,-5px);
-width:90px;
-height:45px;
+transform:translateX(-50%);
+width:80px;
+height:50px;
 }
 
 .fwd{
-top:390px;
-right:45px;
+top:350px;
+right:30px;
+width:80px;
+height:50px;
+}
+
+/* VOLUME */
+
+.volup{
+top:420px;
+left:30px;
 width:80px;
 height:45px;
 }
 
-/* volume */
-
-.volup{
-top:470px;
-left:40px;
-width:80px;
-height:40px;
-}
-
 .voldown{
-top:515px;
-left:40px;
+top:470px;
+left:30px;
 width:80px;
-height:40px;
+height:45px;
 }
 
 .mute{
-top:560px;
-left:40px;
+top:520px;
+left:30px;
 width:80px;
-height:40px;
+height:45px;
 }
 
 </style>
@@ -162,22 +169,24 @@ height:40px;
 
 <body>
 
-<h1 class="titulo">Controle Roku</h1>
+<h1>Controle Roku</h1>
 
-<input type="text" id="ip" placeholder="Digite o IP do Roku">
+<input id="ip" placeholder="Digite o IP do Roku">
 
 <div class="controle">
 
 <img src="controle.png">
 
+<button class="btn power" onclick="enviar('Power')"></button>
+
 <button class="btn home" onclick="enviar('Home')"></button>
 <button class="btn back" onclick="enviar('Back')"></button>
 
 <button class="btn up" onclick="enviar('Up')"></button>
-<button class="btn left" onclick="enviar('Left')"></button>
-<button class="btn ok" onclick="enviar('Select')"></button>
-<button class="btn right" onclick="enviar('Right')"></button>
 <button class="btn down" onclick="enviar('Down')"></button>
+<button class="btn left" onclick="enviar('Left')"></button>
+<button class="btn right" onclick="enviar('Right')"></button>
+<button class="btn ok" onclick="enviar('Select')"></button>
 
 <button class="btn rev" onclick="enviar('Rev')"></button>
 <button class="btn play" onclick="enviar('Play')"></button>
@@ -193,7 +202,7 @@ height:40px;
 
 function enviar(comando){
 
-const ip=document.getElementById("ip").value.trim()
+const ip = document.getElementById("ip").value.trim()
 
 if(!ip){
 alert("Digite o IP do Roku")
@@ -203,7 +212,6 @@ return
 fetch(`http://${ip}:8060/keypress/${comando}`,{
 method:"POST"
 })
-.catch(err=>console.log(err))
 
 }
 
