@@ -21,151 +21,139 @@ color:#6f2dbd;
 font-size:32px;
 }
 
-/* campo IP */
 input{
 padding:10px;
 border-radius:8px;
 border:none;
 width:90%;
-max-width:300px;
+max-width:320px;
 font-size:16px;
 margin-bottom:20px;
 }
 
-/* container do controle */
+/* controle */
+
 .controle{
 position:relative;
-width:280px;
+width:300px;
 margin:auto;
 }
 
-.img-controle{
+.controle img{
 width:100%;
+display:block;
 }
 
-/* botões posicionados */
-.botoes button{
+/* botões invisíveis */
+
+.btn{
 position:absolute;
-background:#6f2dbd;
-color:white;
-border:none;
-border-radius:50%;
+opacity:0;
 cursor:pointer;
-}
-
-.botoes button:hover{
-background:#5a23a0;
 }
 
 /* DIRECIONAL */
 
 .up{
-top:110px;
+top:165px;
 left:50%;
 transform:translateX(-50%);
-width:60px;
+width:70px;
 height:60px;
 }
 
 .down{
-top:220px;
+top:280px;
 left:50%;
 transform:translateX(-50%);
-width:60px;
+width:70px;
 height:60px;
 }
 
 .left{
-top:165px;
-left:40px;
-width:60px;
-height:60px;
-}
-
-.right{
-top:165px;
-right:40px;
-width:60px;
-height:60px;
-}
-
-.ok{
-top:165px;
-left:50%;
-transform:translateX(-50%);
+top:225px;
+left:60px;
 width:70px;
 height:70px;
 }
 
-/* botões superiores */
+.right{
+top:225px;
+right:60px;
+width:70px;
+height:70px;
+}
+
+.ok{
+top:225px;
+left:50%;
+transform:translateX(-50%);
+width:90px;
+height:90px;
+border-radius:50%;
+}
+
+/* superiores */
 
 .home{
-top:40px;
-left:30px;
-width:60px;
-height:40px;
-border-radius:12px;
+top:85px;
+left:45px;
+width:90px;
+height:45px;
 }
 
 .back{
-top:40px;
-right:30px;
-width:60px;
-height:40px;
-border-radius:12px;
+top:85px;
+right:45px;
+width:90px;
+height:45px;
 }
 
 /* mídia */
 
-.play{
-top:300px;
-left:50%;
-transform:translateX(-50%);
-width:70px;
-height:40px;
-border-radius:12px;
+.rev{
+top:390px;
+left:45px;
+width:80px;
+height:45px;
 }
 
-.rev{
-top:300px;
-left:30px;
-width:60px;
-height:40px;
-border-radius:12px;
+.play{
+top:390px;
+left:50%;
+transform:translateX(-50%);
+width:90px;
+height:45px;
 }
 
 .fwd{
-top:300px;
-right:30px;
-width:60px;
-height:40px;
-border-radius:12px;
+top:390px;
+right:45px;
+width:80px;
+height:45px;
 }
 
 /* volume */
 
 .volup{
-top:360px;
-left:30px;
-width:70px;
+top:470px;
+left:40px;
+width:80px;
 height:40px;
-border-radius:12px;
 }
 
 .voldown{
-top:410px;
-left:30px;
-width:70px;
+top:515px;
+left:40px;
+width:80px;
 height:40px;
-border-radius:12px;
 }
 
 .mute{
-top:460px;
-left:30px;
-width:70px;
+top:560px;
+left:40px;
+width:80px;
 height:40px;
-border-radius:12px;
 }
 
 </style>
@@ -179,28 +167,25 @@ border-radius:12px;
 
 <div class="controle">
 
-<img src="controle.png" class="img-controle">
+<img src="controle.png">
 
-<div class="botoes">
+<button class="btn home" onclick="enviar('Home')"></button>
+<button class="btn back" onclick="enviar('Back')"></button>
 
-<button class="home" onclick="enviar('Home')">Home</button>
-<button class="back" onclick="enviar('Back')">Back</button>
+<button class="btn up" onclick="enviar('Up')"></button>
+<button class="btn left" onclick="enviar('Left')"></button>
+<button class="btn ok" onclick="enviar('Select')"></button>
+<button class="btn right" onclick="enviar('Right')"></button>
+<button class="btn down" onclick="enviar('Down')"></button>
 
-<button class="up" onclick="enviar('Up')">↑</button>
-<button class="left" onclick="enviar('Left')">←</button>
-<button class="ok" onclick="enviar('Select')">OK</button>
-<button class="right" onclick="enviar('Right')">→</button>
-<button class="down" onclick="enviar('Down')">↓</button>
+<button class="btn rev" onclick="enviar('Rev')"></button>
+<button class="btn play" onclick="enviar('Play')"></button>
+<button class="btn fwd" onclick="enviar('Fwd')"></button>
 
-<button class="rev" onclick="enviar('Rev')">⏪</button>
-<button class="play" onclick="enviar('Play')">⏯</button>
-<button class="fwd" onclick="enviar('Fwd')">⏩</button>
+<button class="btn volup" onclick="enviar('VolumeUp')"></button>
+<button class="btn voldown" onclick="enviar('VolumeDown')"></button>
+<button class="btn mute" onclick="enviar('VolumeMute')"></button>
 
-<button class="volup" onclick="enviar('VolumeUp')">Vol+</button>
-<button class="voldown" onclick="enviar('VolumeDown')">Vol-</button>
-<button class="mute" onclick="enviar('VolumeMute')">Mute</button>
-
-</div>
 </div>
 
 <script>
@@ -224,4 +209,4 @@ method:"POST"
 </script>
 
 </body>
-</html>
+                                                      </html>
