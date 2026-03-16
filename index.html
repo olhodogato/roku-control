@@ -30,195 +30,65 @@ font-size:16px;
 margin-bottom:20px;
 }
 
-/* CONTROLE - tornado responsivo */
-
+/* CONTROLE */
 .controle{
 position:relative;
-width: 90vw;          /* usa largura da viewport */
-max-width: 340px;     /* limite máximo para não ficar gigante em desktop */
-aspect-ratio: 9 / 16; /* mantém proporção aproximada de controle real */
-margin: 0 auto;
+width:300px;
+margin:auto;
 }
 
 .controle img{
 width:100%;
-height:100%;
-object-fit: contain;  /* evita distorção da imagem */
 display:block;
 }
 
 /* BOTÕES INVISÍVEIS */
 .btn{
 position:absolute;
-opacity:0.4; /* mude para 0 depois de testar */
+opacity:0.4; /* mude para 0 quando estiver perfeito */
 background:red;
 cursor:pointer;
 }
 
 /* POWER */
-
 .power{
-top:4%;
+top:3.5%;
 left:50%;
 transform:translateX(-50%);
-width:18%;
+width:19%;
 height:8%;
 border-radius:50%;
 }
 
-/* BACK + HOME */
-
+/* BACK e HOME */
 .back{
-top:15%;
+top:14%;
 left:5%;
 width:35%;
 height:9%;
 }
 
 .home{
-top:15%;
+top:14%;
 right:5%;
 width:35%;
 height:9%;
 }
 
-/* DIRECIONAL */
-
+/* D-PAD */
 .up{
-top:28%;
-left:38%;
-width:24%;
+top:27%;
+left:37.5%;
+width:25%;
+height:9%;
+}
+
+.down{
+top:49%;
+left:37.5%;
+width:25%;
 height:9%;
 }
 
 .left{
-top:35%;
-left:14%;
-width:24%;
-height:15%;
-}
-
-.right{
-top:35%;
-right:14%;
-width:24%;
-height:15%;
-}
-
-.down{
-top:48.5%;
-left:38%;
-width:24%;
-height:9%;
-}
-
-.ok{
-top:36.5%;
-left:50%;
-transform:translateX(-50%);
-width:27%;
-height:13%;
-border-radius:50%;
-}
-
-/* PLAYBACK - alinhado horizontalmente */
-
-.rev{
-top:59%;
-left:6%;
-width:27%;
-height:8%;
-}
-
-.play{
-top:59%;
-left:36.5%;
-width:27%;
-height:8%;
-}
-
-.fwd{
-top:59%;
-right:6%;
-width:27%;
-height:8%;
-}
-
-/* VOLUME - espaçamento vertical corrigido e ordem certa */
-
-.volup{
-top:69%;
-left:6%;
-width:27%;
-height:7.5%;
-}
-
-.voldown{
-top:77%;
-left:6%;
-width:27%;
-height:7.5%;
-}
-
-.mute{
-top:85%;
-left:6%;
-width:27%;
-height:7.5%;
-}
-
-</style>
-</head>
-
-<body>
-
-<h1>Controle Roku</h1>
-
-<input id="ip" placeholder="Digite o IP do Roku">
-
-<div class="controle">
-
-<img src="controle.png">
-
-<button class="btn power" onclick="enviar('Power')"></button>
-
-<button class="btn home" onclick="enviar('Home')"></button>
-<button class="btn back" onclick="enviar('Back')"></button>
-
-<button class="btn up" onclick="enviar('Up')"></button>
-<button class="btn down" onclick="enviar('Down')"></button>
-<button class="btn left" onclick="enviar('Left')"></button>
-<button class="btn right" onclick="enviar('Right')"></button>
-<button class="btn ok" onclick="enviar('Select')"></button>
-
-<button class="btn rev" onclick="enviar('Rev')"></button>
-<button class="btn play" onclick="enviar('Play')"></button>
-<button class="btn fwd" onclick="enviar('Fwd')"></button>
-
-<button class="btn volup" onclick="enviar('VolumeUp')"></button>
-<button class="btn voldown" onclick="enviar('VolumeDown')"></button>
-<button class="btn mute" onclick="enviar('VolumeMute')"></button>
-
-</div>
-
-<script>
-
-function enviar(comando){
-
-const ip = document.getElementById("ip").value.trim()
-
-if(!ip){
-alert("Digite o IP do Roku")
-return
-}
-
-fetch(`http://\( {ip}:8060/keypress/ \){comando}`,{
-method:"POST"
-})
-
-}
-
-</script>
-
-</body>
-  </html>
+top:34%;
