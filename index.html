@@ -30,23 +30,27 @@ font-size:16px;
 margin-bottom:20px;
 }
 
-/* CONTROLE */
+/* CONTROLE - tornado responsivo */
 
 .controle{
 position:relative;
-width:300px;
-margin:auto;
+width: 90vw;          /* usa largura da viewport */
+max-width: 340px;     /* limite máximo para não ficar gigante em desktop */
+aspect-ratio: 9 / 16; /* mantém proporção aproximada de controle real */
+margin: 0 auto;
 }
 
 .controle img{
 width:100%;
+height:100%;
+object-fit: contain;  /* evita distorção da imagem */
 display:block;
 }
 
 /* BOTÕES INVISÍVEIS */
 .btn{
 position:absolute;
-opacity:0.4; /* deixe visível enquanto ajusta */
+opacity:0.4; /* mude para 0 depois de testar */
 background:red;
 cursor:pointer;
 }
@@ -117,50 +121,50 @@ height:13%;
 border-radius:50%;
 }
 
-/* PLAYBACK (Rev / Play / Fwd) */
+/* PLAYBACK - alinhado horizontalmente */
 
 .rev{
-top:60.5%;
+top:59%;
 left:6%;
 width:27%;
-height:8.5%;
+height:8%;
 }
 
 .play{
-top:60.5%;
+top:59%;
 left:36.5%;
 width:27%;
-height:8.5%;
+height:8%;
 }
 
 .fwd{
-top:60.5%;
+top:59%;
 right:6%;
 width:27%;
-height:8.5%;
+height:8%;
 }
 
-/* VOLUME (vertical - mais espaçado e na ordem certa) */
+/* VOLUME - espaçamento vertical corrigido e ordem certa */
 
 .volup{
-top:71%;
+top:69%;
 left:6%;
 width:27%;
-height:8%;
+height:7.5%;
 }
 
 .voldown{
-top:79.5%;
+top:77%;
 left:6%;
 width:27%;
-height:8%;
+height:7.5%;
 }
 
 .mute{
-top:88%;
+top:85%;
 left:6%;
 width:27%;
-height:8%;
+height:7.5%;
 }
 
 </style>
@@ -217,4 +221,4 @@ method:"POST"
 </script>
 
 </body>
-</html>
+  </html>
